@@ -40,7 +40,7 @@ public class StreamClient {
                 }
                 else if (game.equals("N") || game.equals("n")) {
                     try {
-                        dos.write(-1);
+                        dos.write(0);
                         break;
                     } catch (IOException e) {
                         e.printStackTrace();
