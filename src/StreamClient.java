@@ -65,13 +65,11 @@ public class StreamClient {
                 try {
                     String msg = dis.readUTF();
                     if (msg.equals("win")) {
-                        System.out.println("게임에서 승리하였습니다.");
-                        dos.write(-1);
+                        System.out.println("게임에서 승리하였습니다.\n접속을 종료합니다.");
                         break;
                     }
                     else if (msg.equals("lose")) {
-                        System.out.println("게임에서 졌습니다.");
-                        dos.write(-1);
+                        System.out.println("게임에서 졌습니다.\n접속을 종료합니다.");
                         break;
                     }
                     System.out.println(msg + "\n");
