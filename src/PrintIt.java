@@ -20,12 +20,12 @@ public class PrintIt {
         return msgs;
     }
 
-    public static void check(String[] msgs, int diceNum, SocketChannel channel) {
+    public static void check(String[] msgs, SocketChannel channel) {
         if (msgs[1] != null) {
             if (msgs[0].equals("jump")) {
-                System.out.println(diceNum + "칸을 점프해 " + msgs[1] + "칸에 도착했습니다.");
+                System.out.println(msgs[2] + "칸을 점프해 " + msgs[1] + "칸에 도착했습니다.");
             } else if (msgs[0].equals("back")) {
-                System.out.println(diceNum + "칸 뒤로가 " + msgs[1] + "칸에 도착했습니다.");
+                System.out.println(msgs[2] + "칸 뒤로가 " + msgs[1] + "칸에 도착했습니다.");
             } else if (msgs[0].equals("skip")) {
                 System.out.println(msgs[1] + "칸에 도착했지만 무인도에 도착해 한 턴 휴식합니다.");
             } else if (msgs[0].equals("skip2")) {
@@ -33,9 +33,9 @@ public class PrintIt {
             } else if (msgs[0].equals("catch")) {
                 System.out.println("상대 말을 잡았습니다.");
                 if (msgs[1].equals("jump")) {
-                    System.out.println(diceNum + "칸을 점프해 " + msgs[2] + "칸에 도착했습니다.");
+                    System.out.println(msgs[3] + "칸을 점프해 " + msgs[2] + "칸에 도착했습니다.");
                 } else if (msgs[1].equals("back")) {
-                    System.out.println(diceNum + "칸 뒤로가 " + msgs[2] + "칸에 도착했습니다.");
+                    System.out.println(msgs[3] + "칸 뒤로가 " + msgs[2] + "칸에 도착했습니다.");
                 } else if (msgs[1].equals("skip")) {
                     System.out.println(msgs[2] + "칸에 도착했지만 무인도에 도착해 한 턴 휴식합니다.");
                 } else {
@@ -43,6 +43,7 @@ public class PrintIt {
                 }
             } else if (msgs[0].equals("go")) {
                 System.out.println(msgs[1] + "칸에 도착했습니다.");
+            } else if (msgs[0].equals("host")) {
             } else {
                 if (msgs[1].equals("jump")) {
                     System.out.println(msgs[0] + "이/가 " + msgs[3] + "칸을 점프해 " + msgs[2] + "칸에 도착했습니다.");
@@ -73,20 +74,6 @@ public class PrintIt {
             }
         } else {
             System.out.println(msgs[0] + "이 " + msgs[3] + "칸을 이동해 " + msgs[2] + "칸에 도착했습니다.");
-        }
-    }
-
-    public static void check(String[] msgs, SocketChannel channel) {
-        if (msgs[1] != null) {
-            if (msgs[1].equals("jump")) {
-                System.out.println(msgs[0] + "이/가 " + msgs[2] + "칸을 점프해 " + msgs[2] + "칸에 도착했습니다.");
-            } else if (msgs[1].equals("back")) {
-                System.out.println(msgs[0] + "이/가 " + msgs[2] + "칸을 점프해 " + msgs[2] + "칸에 도착했습니다.");
-            } else if (msgs[1].equals("skip")) {
-                System.out.println(msgs[0] + "이/가 " + msgs[2] + "칸을 점프해 " + msgs[2] + "칸에 도착했습니다.");
-            } else catcher(msgs);
-        } else {
-            System.out.println(msgs[0]);
         }
     }
 }
