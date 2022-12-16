@@ -52,7 +52,7 @@ public class Buffer_Channel_Client {
 
                     if ("host".equals(msg)) {
                         Timer timer = new Timer("Timer");
-                        long delay = 30000L;
+                        long delay = 10000L;
                         timer.schedule(task, delay);
                     }
 
@@ -65,7 +65,8 @@ public class Buffer_Channel_Client {
                             msg = name + "#" + String.valueOf(diceNum);
                             HelperMethods.sendMessage(channel, msg);
                         } else if (game.equals("N") || game.equals("n")) {
-                            HelperMethods.sendMessage(channel, String.valueOf(0));
+                            HelperMethods.sendMessage(channel, "tony#quit");
+                            msg = "quit";
                             break;
                         } else {
                             System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
@@ -73,7 +74,8 @@ public class Buffer_Channel_Client {
                     }
                     it.remove();
                 }
-
+                if (msg.equals("quit"))
+                    break;
             }
         } catch (IOException e) {
             e.printStackTrace();
