@@ -50,9 +50,11 @@ public class Buffer_Channel_Client {
                         PrintIt.check(msgs, channel);
                     }
 
+//                    System.out.println(msg);
+
                     if ("host".equals(msg)) {
                         Timer timer = new Timer("Timer");
-                        long delay = 60000L;
+                        long delay = 10000L;
                         timer.schedule(task, delay);
                     }
 
@@ -60,7 +62,8 @@ public class Buffer_Channel_Client {
                         System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
                         String game = scanner.nextLine();
                         if (game.equals("Y") || game.equals("y")) {
-                            diceNum = random.nextInt(1, 7);
+//                            diceNum = random.nextInt(1, 7);
+                            diceNum = 2;
                             System.out.println("\n주사위 숫자는 " + diceNum + "입니다.");
                             msg = name + "#" + String.valueOf(diceNum);
                             HelperMethods.sendMessage(channel, msg);
@@ -71,6 +74,14 @@ public class Buffer_Channel_Client {
                         } else {
                             System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
                         }
+                    }
+
+                    if ("win".equals(msg)) {
+                        msg = "quit";
+                        System.out.println("이겼습니다.");
+                    } else if ("lose".equals(msg)) {
+                        msg = "quit";
+                        System.out.println("졌습니다.");
                     }
                     it.remove();
                 }
