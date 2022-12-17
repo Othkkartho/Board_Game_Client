@@ -12,7 +12,6 @@ public class HelperMethods {
             while (buffer.hasRemaining()) {
                 socketChannel.write(buffer);
             }
-            buffer.clear();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
