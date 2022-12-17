@@ -26,11 +26,13 @@ public class StreamClient {
 
         Thread sendMessage = new Thread(() -> {
             System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
+            int diceNum = 2;
             while (true) {
                 String game = sc.nextLine();
 
                 if (game.equals("Y") || game.equals("y")) {
-                    int diceNum = random.nextInt(1, 7);
+//                    int diceNum = random.nextInt(1, 7);
+                    diceNum += 1;
                     System.out.println("\n주사위 숫자는 " + diceNum + "입니다.");
                     try {
                         dos.write(diceNum);
@@ -84,6 +86,13 @@ public class StreamClient {
                     }
                     e1.printStackTrace();
                 }
+            }
+            try {
+                socket.close();
+                dis.close();
+                dos.close();
+            } catch (IOException e2) {
+                e2.printStackTrace();
             }
         });
 
