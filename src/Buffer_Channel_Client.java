@@ -35,7 +35,6 @@ public class Buffer_Channel_Client {
             channel.configureBlocking(false);
             channel.register(selector, SelectionKey.OP_READ);
 
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
             while (true) {
                 selector.select();
                 Set<SelectionKey> keys = selector.selectedKeys();
