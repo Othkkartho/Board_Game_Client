@@ -52,7 +52,7 @@ public class Buffer_Channel_Client {
 
                     if ("host".equals(msg)) {
                         Timer timer = new Timer("Timer");
-                        long delay = 10000L;
+                        long delay = 60000L;
                         timer.schedule(task, delay);
                     }
 
