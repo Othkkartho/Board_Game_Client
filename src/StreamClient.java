@@ -41,12 +41,7 @@ public class StreamClient {
                     }
                 }
                 else if (game.equals("N") || game.equals("n")) {
-                    try {
-                        dos.write(0);
-                        break;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    break;
                 }
                 else {
                     System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
