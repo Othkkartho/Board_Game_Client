@@ -69,7 +69,7 @@ public class StreamClient {
                         System.out.println("게임에서 졌습니다.\n접속을 종료합니다.");
                         break;
                     }
-                    System.out.println(msg + "\n");
+                    System.out.println(msg);
                 } catch (IOException e1) {
                     try {
                         socket.close();
