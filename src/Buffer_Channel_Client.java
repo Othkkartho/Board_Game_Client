@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -44,12 +43,9 @@ public class Buffer_Channel_Client {
                     SelectionKey key = it.next();
 
                     if (key.isReadable()) {
-                        msgs = PrintIt.receive(channel);
-                        msg = msgs[0];
-                        PrintIt.check(msgs, channel);
+                        msg = HelperMethods.receiveMessage(channel);
+                        System.out.println(msg);
                     }
-
-//                    System.out.println(msg);
 
                     if ("host".equals(msg)) {
                         Timer timer = new Timer("Timer");
@@ -58,11 +54,10 @@ public class Buffer_Channel_Client {
                     }
 
                     if ("Your Turn".equals(msg)) {
-                        System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
+                        System.out.println("주사위를 굴리려면 y, 게임을 끝내려면 n을 입력해 주세요");
                         String game = scanner.nextLine();
                         if (game.equals("Y") || game.equals("y")) {
                             diceNum = random.nextInt(1, 7);
-//                            diceNum = 2;
                             System.out.println("\n주사위 숫자는 " + diceNum + "입니다.");
                             msg = name + "#" + String.valueOf(diceNum);
                             HelperMethods.sendMessage(channel, msg);
@@ -85,7 +80,7 @@ public class Buffer_Channel_Client {
                     it.remove();
                 }
                 if (msg.equals("quit"))
-                    break;
+                    System.exit(0);
             }
         } catch (IOException e) {
             e.printStackTrace();

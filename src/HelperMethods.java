@@ -1,17 +1,20 @@
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 
 public class HelperMethods {
     public static void sendMessage(SocketChannel socketChannel, String message) {
         try {
-            ByteBuffer buffer = ByteBuffer.allocate(message.length()+1);
+            ByteBuffer buffer = ByteBuffer.allocate(message.length() + 1);
             buffer.put(message.getBytes());
             buffer.put((byte) 0x00);
             buffer.flip();
             while (buffer.hasRemaining()) {
                 socketChannel.write(buffer);
             }
+//            System.out.println("Sent: " + message);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -19,7 +22,7 @@ public class HelperMethods {
 
     public static String receiveMessage(SocketChannel socketChannel) {
         try {
-            ByteBuffer byteBuffer = ByteBuffer.allocate(64);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(256);
             String message = "";
             while (socketChannel.read(byteBuffer) > 0) {
                 char byteRead = 0x00;
@@ -36,7 +39,8 @@ public class HelperMethods {
                 }
                 byteBuffer.clear();
             }
-            return message.toString();
+            message = URLDecoder.decode(message, StandardCharsets.UTF_8);
+            return message;
         } catch (IOException ex) {
             ex.printStackTrace();
         }
