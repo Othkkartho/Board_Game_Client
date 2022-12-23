@@ -54,20 +54,23 @@ public class Buffer_Channel_Client {
                     }
 
                     if ("Your Turn".equals(msg)) {
-                        System.out.println("주사위를 굴리려면 y, 게임을 끝내려면 n을 입력해 주세요");
-                        String game = scanner.nextLine();
-                        if (game.equals("Y") || game.equals("y")) {
-                            diceNum = random.nextInt(1, 7);
-                            System.out.println("\n주사위 숫자는 " + diceNum + "입니다.");
-                            msg = name + "#" + String.valueOf(diceNum);
-                            HelperMethods.sendMessage(channel, msg);
-                        } else if (game.equals("N") || game.equals("n")) {
-                            HelperMethods.sendMessage(channel, "tony#quit");
-                            msg = "quit";
-                            break;
-                        } else {
-                            System.out.println("주사위를 굴리려면 y, 끝내려면 n을 입력해 주세요");
+                        while (true) {
+                            System.out.println("주사위를 굴리려면 y, 게임을 끝내려면 n을 입력해 주세요");
+                            String game = scanner.nextLine();
+                            if (game.equals("Y") || game.equals("y")) {
+                                diceNum = random.nextInt(1, 7);
+                                System.out.println("\n주사위 숫자는 " + diceNum + "입니다.");
+                                msg = name + "#" + diceNum;
+                                HelperMethods.sendMessage(channel, msg);
+                                break;
+                            } else if (game.equals("N") || game.equals("n")) {
+                                HelperMethods.sendMessage(channel, "tony#quit");
+                                msg = "quit";
+                                break;
+                            }
                         }
+                        if (msg.equals("quit"))
+                            break;
                     }
 
                     if ("win".equals(msg)) {
